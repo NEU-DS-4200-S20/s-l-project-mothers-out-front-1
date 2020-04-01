@@ -1,9 +1,9 @@
 // initializing constants for map
-var height = 960;
-var width = 500;
+var height = 800;
+var width = 1500;
 
 var svg = d3
-.select("map-holder")
+.select("#map-holder")
 .append("svg")
 .attr("width", width)
 .attr("height", height);
@@ -24,4 +24,23 @@ d3.json("files/us.json", function(us) {
 function drawMap(us, states) {
     console.log(us);
     console.log(states);
+
+    var mapGroup = svg.append("g").attr("class", "mapGroup");
+
+    mapGroup.append("g")
+    //.attr("id", "states")
+    .selectAll("path")
+    .data(topojson.feature(us, us.objects.states).features).enter()
+    .append("path")
+    .attr("d", path)
+    .attr("class", "states");
+
+    mapGroup.append("path")
+    .datum(
+        topojson.mesh(us, us.objects.states, function(a, b) {
+            return a !== b;
+        })
+    )
+    .attr("id", "state-borders")
+    .attr("d", path);
 }

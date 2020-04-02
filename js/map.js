@@ -22,18 +22,16 @@ d3.json("files/us.json", function(us) {
 });
 
 function drawMap(us, states) {
-    console.log(us);
-    console.log(states);
 
     var mapGroup = svg.append("g").attr("class", "mapGroup");
 
     mapGroup.append("g")
-    //.attr("id", "states")
+    .attr("id", "states")
     .selectAll("path")
     .data(topojson.feature(us, us.objects.states).features).enter()
     .append("path")
-    .attr("d", path)
-    .attr("class", "states");
+    .attr("class", "states")
+    .attr("d", path);
 
     mapGroup.append("path")
     .datum(
@@ -43,4 +41,10 @@ function drawMap(us, states) {
     )
     .attr("id", "state-borders")
     .attr("d", path);
+
+    var legend = svg
+    .append("g")
+    .attr("class", "legend")
+    .attr("width", 140)
+    .attr("height", 400);
 }

@@ -31,20 +31,84 @@ var mapGroup = svg.append("g").attr("class", "mapGroup");
 
 function drawMap(us, cities, states, stateNames) {
 
-  // Setting up Choropleth function [in process]
-    // let fillFunction = function(d){
-    //   console.log(d)
-    // let stateName = stateNames.filter(function (n) { return n.id == d.id })[0].name
-    // let statesTargetNames = states.map(function (s) { return s.name } );
-    // let isTarget = statesTargetNames.includes(stateName);
-    // }
-    //
-    // if (isTarget) {
-    //   return 'blue';
-    // } else {
-    //   return '#aaa';
-    // }
+  // Setting up Choropleth function
+    let fillFunction = function(d){
+    let stateName = stateNames.filter(function (n) { return n.id == d.id })[0].code
+    let statesTargetNames = states.map(function (s) { return s.name });
+    let isTarget = statesTargetNames.includes(stateName)
+
+      if (isTarget) {
+        return result[stateName]['total'];
+      } else {
+        return 0;
+      };
+    }
+
+    var result = {}; 
+    for (var i = 0; i < states.length; i++) { 
+      result[states[i].name] = {total: states[i].total}; 
+    }  
+    console.log(result)
+
+    var totalValue = states.map(function (s) { return parseInt(s.total) });
+
+    var paletteScale = d3.scaleLinear()
+                .domain([d3.min(totalValue), d3.max(totalValue)])
+                .range(["#EFEFFF","#02386F"]); // blue color
   // end of Choropleth section.
+
+
+
+// Mouseover and Mouseout function
+  let mouseOver = function(d) {
+      d3.selectAll("path")
+        .transition()
+        .duration(200)
+        .style("opacity", .5)
+      d3.select(this)
+        .transition()
+        .duration(200)
+        .style("opacity", 1)
+    }
+
+    let mouseLeave = function(d) {
+      d3.selectAll("path")
+        .transition()
+        .duration(200)
+        .style("opacity", .8)
+      d3.select(this)
+        .transition()
+        .duration(100)
+    }
+
+// end of mouse events
+
+// Zoom-in function
+  function clicked(d) {
+    var x, y, k;
+
+    if (d && centered !== d) {
+      var centroid = path.centroid(d);
+      x = centroid[0];
+      y = centroid[1];
+      k = 4;
+      centered = d;
+    } else {
+      x = width / 2;
+      y = height / 2;
+      k = 1;
+      centered = null;
+    }
+
+    mapGroup.selectAll("path")
+        .classed("active", centered && function(d) { return d === centered; });
+
+    mapGroup.transition()
+        .duration(750)
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+        .style("stroke-width", 1.5 / k + "px");
+  }
+  // End of Zoom-in function
 
     mapGroup.append("g")
     .attr("id", "states")
@@ -53,20 +117,15 @@ function drawMap(us, cities, states, stateNames) {
     .append("path")
     .attr("class", "states")
     .attr("d", path)
-    .on('click', clicked);
-    // .attr('fill', fillFunction)
-
-    // .on('mouseover', function(d) {
-    //   // console.log("mouseover state", d)
-    //   // console.log(this)
-    //   let state = d3.select(this);
-    //   state.attr("fill", "red");
-    // })
-    // .on('mouseout', function(d) {
-    //   let state = d3.select(this);
-    //   state.attr("fill", fillFunction);
-    // });
-
+    .on('click', clicked)
+    .style('fill', function(d){
+      var stateTotal = fillFunction(d)
+        if (stateTotal != 0) {
+          return paletteScale(stateTotal)
+        }
+      })
+    .on('mouseover',mouseOver)
+    .on('mouseleave', mouseLeave);
 
     mapGroup.append("path")
     .datum(
@@ -77,12 +136,6 @@ function drawMap(us, cities, states, stateNames) {
     .attr("id", "state-borders")
     .attr("d", path);
 
-     //
-     //
-     // var paletteScale = d3.scale.linear()
-     //             .domain([d3.min, d3.max])
-     //             .range(["#EFEFFF","#02386F"]); // blue color
-
 
     var legend = svg
     .append("g")
@@ -92,28 +145,3 @@ function drawMap(us, cities, states, stateNames) {
 
 
 };
-
-function clicked(d) {
-  var x, y, k;
-
-  if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = centroid[0];
-    y = centroid[1];
-    k = 4;
-    centered = d;
-  } else {
-    x = width / 2;
-    y = height / 2;
-    k = 1;
-    centered = null;
-  }
-
-  mapGroup.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
-
-  mapGroup.transition()
-      .duration(750)
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-      .style("stroke-width", 1.5 / k + "px");
-}

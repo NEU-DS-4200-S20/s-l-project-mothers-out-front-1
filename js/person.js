@@ -85,6 +85,7 @@ function createNational() {
 
 function createState(stateName) {
   d3.csv("data/by-state.csv", function (data) {
+    console.log(data);
     var inData = false;
     var index = 0;
     for (var i = 0; i < data.length; i += 1) {
@@ -95,11 +96,13 @@ function createState(stateName) {
       }
     }
     if (!inData) {
-      createNational();
+      var stateData = {name : stateName, total : 0, Leading : 0, Taking_Action : 0, Supporting : 0, Dues_Paying_Members : 0};
+      var xMax = 1000;
     }
     else {
       var stateData = data[index];
       var xMax = Math.max(stateData.Leading, stateData.Taking_Action, stateData.Supporting);
+    }
       // x-axis
       var x = d3.scaleLinear()
         .domain([0, xMax])
@@ -158,7 +161,6 @@ function createState(stateName) {
             .duration(2000)
             .style("opacity", 0);
         });
-    }
   });
 }
 

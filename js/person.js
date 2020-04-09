@@ -11,6 +11,10 @@ var svg = d3.select("#person-holder")
   .append("g")
   .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
+  // create tooltip
+  var div = d3.select("#person-holder").append("div")	
+  .attr("class", "tooltip")				
+  .style("opacity", 0);
 createNational();
 
 function createNational() {
@@ -51,6 +55,8 @@ function createNational() {
       .attr("x", 0)
       .attr("y", 30);
 
+
+
       // add bars
     svg.selectAll("myRect")
       .data(data)
@@ -60,7 +66,19 @@ function createNational() {
       .attr("y", function (d) { return y(d.Name); })
       .attr("width", function (d) { return x(d.National); })
       .attr("height", 100)
-      .attr("fill", "url(#diagonalHatch)");
+      .attr("fill", "url(#diagonalHatch)").on("mouseover", function(d) {		
+        div.transition()		
+            .duration(200)		
+            .style("opacity", 1);		
+        div	.html(d.Name + "<br/>"  + d.National)	
+            .style("left", (d3.event.pageX) + "px")		
+            .style("top", (d3.event.pageY - 28) + "px");	
+        })					
+    .on("mouseout", function(d) {		
+        div.transition()		
+            .duration(500)		
+            .style("opacity", 0);	
+    });
   })
 }
 

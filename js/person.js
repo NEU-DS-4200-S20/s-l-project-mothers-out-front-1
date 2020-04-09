@@ -11,10 +11,11 @@ var svg = d3.select("#person-holder")
   .append("g")
   .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
-  // create tooltip
-  var div = d3.select("#person-holder").append("div")	
-  .attr("class", "tooltip")				
+// create tooltip
+var div = d3.select("#person-holder").append("div")
+  .attr("class", "tooltip")
   .style("opacity", 0);
+
 createNational();
 
 function createNational() {
@@ -57,7 +58,7 @@ function createNational() {
 
 
 
-      // add bars
+    // add bars
     svg.selectAll("myRect")
       .data(data)
       .enter()
@@ -66,19 +67,19 @@ function createNational() {
       .attr("y", function (d) { return y(d.Name); })
       .attr("width", function (d) { return x(d.National); })
       .attr("height", 100)
-      .attr("fill", "url(#diagonalHatch)").on("mouseover", function(d) {		
-        div.transition()		
-            .duration(200)		
-            .style("opacity", 1);		
-        div	.html(d.Name + "<br/>"  + d.National)	
-            .style("left", (d3.event.pageX) + "px")		
-            .style("top", (d3.event.pageY - 28) + "px");	
-        })					
-    .on("mouseout", function(d) {		
-        div.transition()		
-            .duration(500)		
-            .style("opacity", 0);	
-    });
+      .attr("fill", "url(#diagonalHatch)").on("mouseover", function (d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", 1);
+        div.html(d.Name + "<br/>" + d.National)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(2000)
+          .style("opacity", 0);
+      });
   })
 }
 
@@ -132,9 +133,9 @@ function createState(stateName) {
         .attr("x", 0)
         .attr("y", 30);
 
-        var dataForBars = [{Name : data.columns[2], Num : stateData.Leading},
-                           {Name : data.columns[3].replace("_", " "), Num : stateData.Taking_Action},
-                           {Name : data.columns[4], Num : stateData.Supporting}];
+      var dataForBars = [{ Name: data.columns[2], Num: stateData.Leading },
+      { Name: data.columns[3].replace("_", " "), Num: stateData.Taking_Action },
+      { Name: data.columns[4], Num: stateData.Supporting }];
       // add bars
       svg.selectAll("myRect")
         .data(dataForBars)
@@ -144,7 +145,19 @@ function createState(stateName) {
         .attr("y", function (d) { return y(d.Name); })
         .attr("width", function (d) { return x(d.Num); })
         .attr("height", 100)
-        .attr("fill", "url(#diagonalHatch)");
+        .attr("fill", "url(#diagonalHatch)").on("mouseover", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", 1);
+          div.html(d.Name + "<br/>" + d.Num)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+          div.transition()
+            .duration(2000)
+            .style("opacity", 0);
+        });
     }
   });
 }

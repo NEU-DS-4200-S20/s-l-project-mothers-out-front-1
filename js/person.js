@@ -3,22 +3,27 @@ var margin = { top: 20, right: 30, bottom: 40, left: 90 },
   width = 1300 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#person-holder")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform",
-    "translate(" + margin.left + "," + margin.top + ")");
+
+
+createNational();
+
+
+function createNational() {
+  var svg = d3.select("#person-holder");
+  svg.selectAll("#svg-person").remove();
+  // append the svg object to the body of the page
+svg = d3.select("#person-holder").append("svg")
+.attr("id", "svg-person")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+  "translate(" + margin.left + "," + margin.top + ")");
 // create tooltip
 var div = d3.select("#person-holder").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
 
-createNational();
-
-function createNational() {
   // parse the data
   d3.csv("data/national-data.csv", function (data) {
     var xMax = Math.max(data[0].National, data[1].National, data[2].National);
@@ -67,7 +72,8 @@ function createNational() {
       .attr("y", function (d) { return y(d.Name); })
       .attr("width", function (d) { return x(d.National); })
       .attr("height", 100)
-      .attr("fill", "url(#diagonalHatch)").on("mouseover", function (d) {
+      .attr("fill", "url(#diagonalHatch)")
+      .on("mouseover", function (d) {
         div.transition()
           .duration(200)
           .style("opacity", 1);
@@ -75,17 +81,34 @@ function createNational() {
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
+      .on("mousemove", function(d) {
+        div.style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY - 28) + "px");
+      })
       .on("mouseout", function (d) {
         div.transition()
-          .duration(2000)
+          .duration(1000)
           .style("opacity", 0);
       });
   })
 }
 
 function createState(stateName) {
+  var svg = d3.select("#person-holder");
+  svg.selectAll("#svg-person").remove();
+  // append the svg object to the body of the page
+svg = d3.select("#person-holder").append("svg")
+.attr("id", "svg-person")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+  "translate(" + margin.left + "," + margin.top + ")");
+// create tooltip
+var div = d3.select("#person-holder").append("div")
+.attr("class", "tooltip")
+.style("opacity", 0);
   d3.csv("data/by-state.csv", function (data) {
-    console.log(data);
     var inData = false;
     var index = 0;
     for (var i = 0; i < data.length; i += 1) {
@@ -148,7 +171,8 @@ function createState(stateName) {
         .attr("y", function (d) { return y(d.Name); })
         .attr("width", function (d) { return x(d.Num); })
         .attr("height", 100)
-        .attr("fill", "url(#diagonalHatch)").on("mouseover", function (d) {
+        .attr("fill", "url(#diagonalHatch)")
+        .on("mouseover", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", 1);
@@ -156,9 +180,13 @@ function createState(stateName) {
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
+        .on("mousemove", function(d) {
+          div.style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+        })
         .on("mouseout", function (d) {
           div.transition()
-            .duration(2000)
+            .duration(1000)
             .style("opacity", 0);
         });
   });

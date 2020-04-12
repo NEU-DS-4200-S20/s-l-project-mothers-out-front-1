@@ -22,33 +22,34 @@ h1, h2, h3 {
 }
 
 .states {
-	fill: #aaa;
+	fill: #E2DEDE;
 }
 
 #states .active {
-  fill: orange;
+  fill: #C9C9C9;
 }
+
 
 #state-borders {
 	fill: none;
-	stroke: #fff;
+	stroke: #AAB0B0;
 	stroke-width: 1.5px;
 	stroke-linejoin: round;
 	stroke-linecap: round;
 	pointer-events: none;
 }
 
-div.tooltip {	
-    position: absolute;			
-    text-align: center;			
-    width: 80px;					
-    height:30px;					
-    padding: 2px;				
-    font: 12px sans-serif;		
-    background: lightsteelblue;	
-    border: 0px;		
-    border-radius: 8px;			
-    pointer-events: none;			
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 80px;
+    height:30px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
 }
 
 /* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */

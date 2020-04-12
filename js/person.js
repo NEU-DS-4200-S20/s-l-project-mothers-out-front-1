@@ -1,5 +1,5 @@
 // set person graph dimensions
-var margin = { top: 20, right: 30, bottom: 40, left: 90 },
+var margin = { top: 20, right: 30, bottom: 70, left: 90 },
   width = 1300 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -191,5 +191,3 @@ var div = d3.select("#person-holder").append("div")
         });
   });
 }
-
-

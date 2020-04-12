@@ -54,9 +54,8 @@ function drawMap(us, cities, states, stateNames) {
 
     var paletteScale = d3.scaleLinear()
                 .domain([d3.min(totalValue), d3.max(totalValue)])
-                .range(["#EFEFFF","#02386F"]); // blue color
+                .range(["#FFD3AF","#E24A04"]); // orange color
   // end of Choropleth section.
-
 
 
 // Mouseover and Mouseout function
@@ -80,7 +79,6 @@ function drawMap(us, cities, states, stateNames) {
         .transition()
         .duration(100)
     }
-
 // end of mouse events
 
 // Zoom-in function
@@ -90,7 +88,7 @@ function drawMap(us, cities, states, stateNames) {
     if (d && centered !== d) {
       var centroid = path.centroid(d);
       x = centroid[0];
-      y = centroid[1];
+      y = centroid[1]-70;
       k = 4;
       centered = d;
     } else {
@@ -106,14 +104,16 @@ function drawMap(us, cities, states, stateNames) {
     mapGroup.transition()
         .duration(750)
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-        .style("stroke-width", 1.5 / k + "px");
+        .style("stroke-width", 1.5 / k  + "px");
+
   }
   // End of Zoom-in function
 
     mapGroup.append("g")
     .attr("id", "states")
     .selectAll("path")
-    .data(topojson.feature(us, us.objects.states).features).enter()
+    .data(topojson.feature(us, us.objects.states).features)
+    .enter()
     .append("path")
     .attr("class", "states")
     .attr("d", path)
@@ -125,7 +125,8 @@ function drawMap(us, cities, states, stateNames) {
         }
       })
     .on('mouseover',mouseOver)
-    .on('mouseleave', mouseLeave);
+    .on('mouseleave', mouseLeave)
+
 
     mapGroup.append("path")
     .datum(
@@ -137,11 +138,70 @@ function drawMap(us, cities, states, stateNames) {
     .attr("d", path);
 
 
-    var legend = svg
-    .append("g")
-    .attr("class", "legend")
-    .attr("width", 140)
-    .attr("height", 400);
+    // Map Legend
+    var w = 500, h = 80;
 
+
+    var key = svg.append("g")
+      .attr("class", "legend")
+      .append("svg")
+      .attr("width", 1500)
+      .attr("height", h);
+
+    var legend = key.append("defs")
+      .append("linearGradient")
+      .attr("id", "gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")
+      .attr("x2", "100%")
+      .attr("y2", "0%")
+      .attr("spreadMethod", "pad");
+
+    legend.selectAll('stop')
+          .data([
+            {offset: "0%", color: "#E2DEDE"},
+            {offset: "10%", color: "#FFD3AF"},
+            {offset: "60%", color: "#FE9452"},
+            {offset: "80%", color: "#FC6202"},
+            {offset: "100%", color: "#E24A04"},
+          ])
+        .enter().append("stop")
+        .attr("offset", function(d) { return d.offset; })
+        .attr("stop-color", function(d) { return d.color; })
+        .attr('stop-opacity', 0.8);
+
+    key.append("rect")
+      .attr("width", w)
+      .attr("height", h - 60)
+      .style("fill", "url(#gradient)")
+      .attr("transform", "translate(450,20)");
+
+    key.append('g')
+       .attr('class','caption')
+       .attr("transform", "translate(450,15)")
+       .append('text')
+        .attr("fill", "#000")
+        .attr("text-anchor", "start")
+        .attr("font-weight", "bold")
+        .text("Total membership in each state ");
+
+    var y = d3.scaleLinear()
+      .range([w, 0])
+      .domain([d3.max(totalValue),0]);
+
+    var yAxis = d3.axisBottom()
+      .scale(y)
+      .ticks(5);
+
+    key.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(450,40)")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 30)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text("axis title");
 
 };

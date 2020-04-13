@@ -25,120 +25,129 @@
 <!-- Main page content -->
 <body>
 
-  <!-- Update this with your GitHub repo URL -->
-  <span id="forkongithub"><a href="https://github.com/NEU-DS-4200-S20/s-l-project-mothers-out-front-1">Fork me on GitHub</a></span>
+    <!-- Update this with your GitHub repo URL -->
+    <span id="forkongithub"><a href="https://github.com/NEU-DS-4200-S20/s-l-project-mothers-out-front-1">Fork me on GitHub</a></span>
 
-  <!-- Your writeup goes here -->
-  <div class = "content-column">
+    <!-- Your writeup goes here -->
+    <div class="content-column">
 
-    <h1>Mothers Out Front 1: Viewing People Power, DS 4200 S20</h1>
+        <h1>Mothers Out Front 1: Viewing People Power, DS 4200 S20</h1>
 
-    <p><strong>Rachel Waddell</strong>, <strong>Nanxi Gu</strong>, <strong>Maris McGuinness</strong>, <strong>Samyak Jain</strong></p>
+        <p><strong>Rachel Waddell</strong>, <strong>Nanxi Gu</strong>, <strong>Maris McGuinness</strong>, <strong>Samyak Jain</strong></p>
 
-    <p>Service-Learning Course Project as part of <a href="https://canvas.instructure.com/courses/1781714">DS 4200: Information Presentation and Visualization</a>, taught by <a href="https://www.eecs.tufts.edu/~dcashm01/">Prof. Dylan Cashman</a>, <a href="https://visualization.khoury.northeastern.edu/">Data Visualization @ Khoury</a>, <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.</p>
-
-
-    <h1>Motivation</h1>
-
-    <p><em>Currently, Mothers out Front, a nonprofit that enables people – with a focus on mothers – to pursue
-      environmental justice is looking to improve their weekly newsletters to their base. They want to include visualization
-      that allows people to see the current size of the movement in an engaging way, including the three steps of their
-      "Ladder of Engagement:" Supporting (base who have not volunteered yet), Taking Action (volunteers), and Leading
-      (people who take charge and organize). A secondary goal is to allow users to personalize the visualization by zooming
-      in on their home state and even city, if a team exists there. To fulfill these needs, we have created a bar chart to show
-      overall movement size stratified accross the three levels of involvement linked to a chloropleth map that allows zooming-in on
-      states, which then filters the bar chart to the state data.
-    </em></p>
+        <p>Service-Learning Course Project as part of <a href="https://canvas.instructure.com/courses/1781714">DS 4200: Information Presentation and Visualization</a>, taught by <a href="https://www.eecs.tufts.edu/~dcashm01/">Prof. Dylan Cashman</a>, <a href="https://visualization.khoury.northeastern.edu/">Data Visualization @ Khoury</a>, <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.</p>
 
 
-    <h1>Visualization</h1>
-    <p>
-      Below are the numbers of people at each level of the Ladder of Engagement. <b>Hover to see exact numbers!</b>
-    </p>
-    <p>
-      Explore the map to find your local team and see your state's specifics represented in the people power chart! <br/>
-      <b>NOTE:</b> If your state is gray and the bar chart is empty when you zoom in, there is not a team in your area, yet.
-      Visit the <a href="http://mothersoutfront.org" target="_blank">Mothers Out Front website</a> to see about changing that!
-    </p>
+        <h1>Motivation</h1>
 
-  </div>
-
-  <!-- Your visualization here -->
-  <div class="vis-holder">
-      <!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->
-      <div id="person-holder"></div>
-      <div id="map-holder"></div>
-  </div>
-
-  <!-- Your writeup goes here -->
-  <div class = "content-column">
-
-    <h1>Demo Video</h1>
-
-    <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
-
-    <video controls width="100%">
-      <source src="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4" type="video/mp4">
-      <p>Your browser doesn't support HTML5 video. Here is
-       a <a href="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4">link to the video</a> instead.</p>
-    </video>
-
-    <h1>Visualization explanation</h1>
-
-    <p><em>Final visualization screenshots (PNG images), design justifications, UI walk-through, and linked presentation slides.</em></p>
-
-    <h1>Data Analysis</h1>
-    <p><em>Summary of data, data types, and data preprocessing.</em></p>
-
-    <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
-
-    <h1>Task Analysis</h1>
-
-    <p><em>Summary of task table.</em></p>
-
-    <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em></p>
-
-    <h1>Design Process</h1>
-
-    <p><em>Sketches and design choices to justify final visualization.</em></p>
-
-    <p><em>Expectation: Evidence of iterative improvement.
-    Logical discussion of design choices grounded in theory from course.
-    Discusses feedback from usability testing.</em></p>
+        <p>
+            <em>
+                Currently, Mothers out Front, a nonprofit that enables people – with a focus on mothers – to pursue
+                environmental justice is looking to improve their weekly newsletters to their base. They want to include visualization
+                that allows people to see the current size of the movement in an engaging way, including the three steps of their
+                "Ladder of Engagement:" Supporting (base who have not volunteered yet), Taking Action (volunteers), and Leading
+                (people who take charge and organize). A secondary goal is to allow users to personalize the visualization by zooming
+                in on their home state and even city, if a team exists there. To fulfill these needs, we have created a bar chart to show
+                overall movement size stratified accross the three levels of involvement linked to a chloropleth map that allows zooming-in on
+                states, which then filters the bar chart to the state data.
+            </em>
+        </p>
 
 
-    <h1>Conclusion</h1>
+        <h1>Visualization</h1>
+        <p>
+            Below are the numbers of people at each level of the Ladder of Engagement. <b>Hover to see exact numbers!</b>
+        </p>
+        <p>
+            Explore the map to find your local team and see your state's specifics represented in the people power chart! <br />
+            <b>NOTE:</b> If your state is gray and the bar chart is empty when you zoom in, there is not a team in your area, yet.
+            Visit the <a href="http://mothersoutfront.org" target="_blank">Mothers Out Front website</a> to see about changing that!
+        </p>
 
-    <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
+    </div>
 
-    <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
+    <!-- Your visualization here -->
+    <div class="vis-holder">
+        <!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->
+        <div id="person-holder"></div>
+        <div id="map-holder"></div>
+    </div>
+
+    <!-- Your writeup goes here -->
+    <div class="content-column">
+
+        <h1>Demo Video</h1>
+
+        <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
+
+        <video controls width="100%">
+            <source src="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4" type="video/mp4">
+            <p>
+                Your browser doesn't support HTML5 video. Here is
+                a <a href="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4">link to the video</a> instead.
+            </p>
+        </video>
+
+        <h1>Visualization explanation</h1>
+
+        <p><em>Final visualization screenshots (PNG images), design justifications, UI walk-through, and linked presentation slides.</em></p>
+
+        <h1>Data Analysis</h1>
+        <p><em>Summary of data, data types, and data preprocessing.</em></p>
+
+        <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
+
+        <h1>Task Analysis</h1>
+
+        <p><em>Summary of task table.</em></p>
+
+        <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em></p>
+
+        <h1>Design Process</h1>
+
+        <p><em>Sketches and design choices to justify final visualization.</em></p>
+
+        <p>
+            <em>
+                Expectation: Evidence of iterative improvement.
+                Logical discussion of design choices grounded in theory from course.
+                Discusses feedback from usability testing.
+            </em>
+        </p>
 
 
-    <h1>Acknowledgments</h1>
+        <h1>Conclusion</h1>
 
-    <p><em>List here where any code, packages/libraries, text, images, designs, etc. that you leverage come from.</em></p>
+        <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
 
-    <ul>
-      <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
-      <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann.</li>
-    </ul>
+        <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
 
-  </div>
 
-  <!-- Scripts at the end avoid need for dealing with async, defer, or onload event handlers -->
-  <script src="lib/d3.v4/d3.v4.js"></script>
-  <script src="js/map.js"></script>
-  <script src="js/person.js"></script>
-  <script src="js/visualization.js"></script>
-  <script src="https://d3js.org/topojson.v3.min.js"></script>
+        <h1>Acknowledgments</h1>
 
-  <!-- <div id="observablehq-6fe53318"></div>
-  <script type="module">
-  import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-  import define from "https://api.observablehq.com/@d3/color-legend.js?v=3";
-  const inspect = Inspector.into("#observablehq-6fe53318");
-  (new Runtime).module(define, name => (name === "legend") && inspect());
-  </script> -->
+        <p><em>List here where any code, packages/libraries, text, images, designs, etc. that you leverage come from.</em></p>
+
+        <ul>
+            <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
+            <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann.</li>
+        </ul>
+
+    </div>
+
+    <!-- Scripts at the end avoid need for dealing with async, defer, or onload event handlers -->
+    <script src="lib/d3.v4/d3.v4.js"></script>
+    <script src="js/person.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/visualization.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+
+    <!-- <div id="observablehq-6fe53318"></div>
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@d3/color-legend.js?v=3";
+    const inspect = Inspector.into("#observablehq-6fe53318");
+    (new Runtime).module(define, name => (name === "legend") && inspect());
+    </script> -->
 
 </body>
 </html>

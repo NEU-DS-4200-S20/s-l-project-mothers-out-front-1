@@ -3,10 +3,7 @@ var margin = { top: 20, right: 30, bottom: 70, left: 90 },
   width = 1300 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
-
-
 createNational();
-
 
 function createNational() {
   var svg = d3.select("#person-holder");
@@ -59,7 +56,7 @@ var div = d3.select("#person-holder").append("div")
       .attr("width", 30)
       .attr("height", 70)
       .attr("x", 0)
-      .attr("y", 30);
+      .attr("y", 0);
 
 
 

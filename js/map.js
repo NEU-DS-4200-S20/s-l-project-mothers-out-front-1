@@ -26,7 +26,6 @@ d3.json("files/us.json", function(us) {
   });
 });
 
-
 var mapGroup = svg.append("g").attr("class", "mapGroup");
 
 function drawMap(us, cities, states, stateNames) {
@@ -34,6 +33,7 @@ function drawMap(us, cities, states, stateNames) {
   // Setting up Choropleth function
     let fillFunction = function(d){
     let stateName = stateNames.filter(function (n) { return n.id == d.id })[0].code
+
     let statesTargetNames = states.map(function (s) { return s.name });
     let isTarget = statesTargetNames.includes(stateName)
 
@@ -79,8 +79,10 @@ function drawMap(us, cities, states, stateNames) {
         .transition()
         .duration(100)
     }
-// end of mouse events
+// end of mouse event
 
+
+let stateVar = null;
 // Zoom-in function
   function clicked(d) {
     var x, y, k;
@@ -97,6 +99,23 @@ function drawMap(us, cities, states, stateNames) {
       k = 1;
       centered = null;
     }
+
+    //communicate w/ other graph
+    d3.tsv('data/us-state-names.tsv', function(stateNames) {
+        state = filterState(stateNames);
+        if (stateVar == state) {
+            createNational();  
+		}
+        else {
+            createState(state);
+		}
+        stateVar = state;
+    })
+
+    //filter state names
+    function filterState(stateNames) {
+        return stateNames.filter(function (n) {return n.id == d.id})[0].code;
+	}
 
     mapGroup.selectAll("path")
         .classed("active", centered && function(d) { return d === centered; });
@@ -140,7 +159,6 @@ function drawMap(us, cities, states, stateNames) {
 
     // Map Legend
     var w = 500, h = 80;
-
 
     var key = svg.append("g")
       .attr("class", "legend")

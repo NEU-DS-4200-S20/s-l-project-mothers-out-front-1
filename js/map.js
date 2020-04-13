@@ -90,7 +90,7 @@ let stateVar = null;
     if (d && centered !== d) {
       var centroid = path.centroid(d);
       x = centroid[0];
-      y = centroid[1]-70;
+      y = centroid[1]-30;
       k = 4;
       centered = d;
     } else {

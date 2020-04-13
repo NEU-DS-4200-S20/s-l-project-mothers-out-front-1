@@ -6,6 +6,17 @@ var pMargin = { top: 20, right: 30, bottom: 70, left: 90 },
 function createNational() {
   var svg = d3.select("#person-holder");
   svg.selectAll("#svg-person").remove();
+  svg.selectAll("#title").remove();
+
+  // append title
+  svg.append("text")
+        .attr("id", "title")
+        .attr("x", (pWidth / 2))             
+        .attr("y", 0 - (pMargin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Ladder of Engagement at National Level");
   // append the svg object to the body of the page
 svg = d3.select("#person-holder").append("svg")
 .attr("id", "svg-person")
@@ -91,6 +102,17 @@ var div = d3.select("#person-holder").append("div")
 function createState(stateName) {
   var svg = d3.select("#person-holder");
   svg.selectAll("#svg-person").remove();
+  svg.selectAll("#title").remove();
+
+  // append title
+  svg.append("text")
+        .attr("id", "title")
+        .attr("x", (pWidth / 2))             
+        .attr("y", 0 - (pMargin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Ladder of Engagement at "+ stateName +" Level");
   // append the svg object to the body of the page
 svg = d3.select("#person-holder").append("svg")
 .attr("id", "svg-person")

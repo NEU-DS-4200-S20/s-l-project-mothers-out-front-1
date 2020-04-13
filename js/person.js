@@ -1,9 +1,7 @@
 // set person graph dimensions
-var margin = { top: 20, right: 30, bottom: 70, left: 90 },
-  width = 1300 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
-
-createNational();
+var pMargin = { top: 20, right: 30, bottom: 70, left: 90 },
+  pWidth = 1300 - pMargin.left - pMargin.right,
+  pHeight = 400 - pMargin.top - pMargin.bottom;
 
 function createNational() {
   var svg = d3.select("#person-holder");
@@ -11,11 +9,11 @@ function createNational() {
   // append the svg object to the body of the page
 svg = d3.select("#person-holder").append("svg")
 .attr("id", "svg-person")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
+.attr("width", pWidth + pMargin.left + pMargin.right)
+.attr("height", pHeight + pMargin.top + pMargin.bottom)
 .append("g")
 .attr("transform",
-  "translate(" + margin.left + "," + margin.top + ")");
+  "translate(" + pMargin.left + "," + pMargin.top + ")");
 // create tooltip
 var div = d3.select("#person-holder").append("div")
   .attr("class", "tooltip")
@@ -28,9 +26,9 @@ var div = d3.select("#person-holder").append("div")
     // x-axis
     var x = d3.scaleLinear()
       .domain([0, xMax])
-      .range([0, width]);
+      .range([0, pWidth]);
     svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0," + pHeight + ")")
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
@@ -38,7 +36,7 @@ var div = d3.select("#person-holder").append("div")
 
     // y-axis
     var y = d3.scaleBand()
-      .range([0, height])
+      .range([0, pHeight])
       .domain(data.map(function (d) { return d.Name; }))
       .padding(.1);
     svg.append("g")
@@ -56,7 +54,7 @@ var div = d3.select("#person-holder").append("div")
       .attr("width", 30)
       .attr("height", 70)
       .attr("x", 0)
-      .attr("y", 0);
+      .attr("y", 30);
 
 
 
@@ -96,11 +94,11 @@ function createState(stateName) {
   // append the svg object to the body of the page
 svg = d3.select("#person-holder").append("svg")
 .attr("id", "svg-person")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
+.attr("width", pWidth + pMargin.left + pMargin.right)
+.attr("height", pHeight + pMargin.top + pMargin.bottom)
 .append("g")
 .attr("transform",
-  "translate(" + margin.left + "," + margin.top + ")");
+  "translate(" + pMargin.left + "," + pMargin.top + ")");
 // create tooltip
 var div = d3.select("#person-holder").append("div")
 .attr("class", "tooltip")
@@ -126,9 +124,9 @@ var div = d3.select("#person-holder").append("div")
       // x-axis
       var x = d3.scaleLinear()
         .domain([0, xMax])
-        .range([0, width]);
+        .range([0, pWidth]);
       svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + pHeight + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
         .attr("transform", "translate(-10,0)rotate(-45)")
@@ -136,7 +134,7 @@ var div = d3.select("#person-holder").append("div")
 
       // y-axis
       var y = d3.scaleBand()
-        .range([0, height])
+        .range([0, pHeight])
         .domain([data.columns[2], data.columns[3].replace("_", " "), data.columns[4]])
         .padding(.1);
       svg.append("g")

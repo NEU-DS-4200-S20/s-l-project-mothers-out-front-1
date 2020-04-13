@@ -1,13 +1,14 @@
 // initializing constants for map
 var height = 800,
-    width = 1500,
+    width = 1200,
     centered;
 
 var svg = d3
 .select("#map-holder")
 .append("svg")
 .attr("width", width)
-.attr("height", height);
+.attr("height", height)
+.attr("transform", "translate(90,0)");
 
 var projection = d3
 .geoAlbersUsa()
@@ -26,7 +27,8 @@ d3.json("files/us.json", function(us) {
   });
 });
 
-var mapGroup = svg.append("g").attr("class", "mapGroup");
+var mapGroup = svg.append("g")
+                  .attr("class", "mapGroup");
 
 function drawMap(us, cities, states, stateNames) {
 
@@ -90,7 +92,7 @@ let stateVar = null;
     if (d && centered !== d) {
       var centroid = path.centroid(d);
       x = centroid[0];
-      y = centroid[1]-30;
+      y = centroid[1]-15;
       k = 4;
       centered = d;
     } else {
@@ -104,7 +106,7 @@ let stateVar = null;
     d3.tsv('data/us-state-names.tsv', function(stateNames) {
         state = filterState(stateNames);
         if (stateVar == state) {
-            createNational();  
+            createNational();
 		}
         else {
             createState(state);
@@ -192,11 +194,11 @@ let stateVar = null;
       .attr("width", w)
       .attr("height", h - 60)
       .style("fill", "url(#gradient)")
-      .attr("transform", "translate(450,20)");
+      .attr("transform", "translate(320,40)");
 
     key.append('g')
        .attr('class','caption')
-       .attr("transform", "translate(450,15)")
+       .attr("transform", "translate(320,35)")
        .append('text')
         .attr("fill", "#000")
         .attr("text-anchor", "start")
@@ -213,7 +215,7 @@ let stateVar = null;
 
     key.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(450,40)")
+      .attr("transform", "translate(320,60)")
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")

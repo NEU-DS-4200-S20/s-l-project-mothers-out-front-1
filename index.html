@@ -33,7 +33,7 @@
 
         <h1>Mothers Out Front 1: Viewing People Power, DS 4200 S20</h1>
 
-        <p><strong>Rachel Waddell</strong>, <strong>Nanxi Gu</strong>, <strong>Maris McGuinness</strong>, <strong>Samyak Jain</strong></p>
+        <p><strong>Rachel Waddell</strong>, <strong>Nanxi Gu</strong>, <strong>Maris McGuinness</strong></p>
 
         <p>Service-Learning Course Project as part of <a href="https://canvas.instructure.com/courses/1781714">DS 4200: Information Presentation and Visualization</a>, taught by <a href="https://www.eecs.tufts.edu/~dcashm01/">Prof. Dylan Cashman</a>, <a href="https://visualization.khoury.northeastern.edu/">Data Visualization @ Khoury</a>, <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.</p>
 
@@ -78,41 +78,37 @@
 
         <h1>Demo Video</h1>
 
-        <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
+        <p><em>Example transitions and linking of the visualizations.</em></p>
 
         <video controls width="100%">
-            <source src="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4" type="video/mp4">
-            <p>
-                Your browser doesn't support HTML5 video. Here is
-                a <a href="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4">link to the video</a> instead.
-            </p>
+            <source src="/files/demo_video.mp4" type="video/mp4">
         </video>
 
         <h1>Visualization Explanation</h1>
 
-        <p><em>This visualization includes a bar chart with person icons representing the movement's people power at each level of their Ladder of Engagement, and a map 
-            of the United States with an associated color scale for each state's fill that represents the total number of members of the movement in 
-            that state. To start, the bar chart shows nationwide data at each level, and the map is zoomed out to show the entirety of the country. When the user 
-            hovers their mouse over the bars of the bar chart, they can see the exact number represented by that bar. When a user clicks on a state, the map zooms in so 
-            that the state is centered and the bar chart filters to only show that state's data. When a user clicks on the selected state a second time, the map 
+        <p><em>This visualization includes a bar chart with person icons representing the movement's people power at each level of their Ladder of Engagement, and a map
+            of the United States with an associated color scale for each state's fill that represents the total number of members of the movement in
+            that state. To start, the bar chart shows nationwide data at each level, and the map is zoomed out to show the entirety of the country. When the user
+            hovers their mouse over the bars of the bar chart, they can see the exact number represented by that bar. When a user clicks on a state, the map zooms in so
+            that the state is centered and the bar chart filters to only show that state's data. When a user clicks on the selected state a second time, the map
             zooms back out to show the entire United States, and the nationwide data is displayed once again on the bar chart.
         </em></p>
 
         <h1>Data Analysis</h1>
         <p><em>Mothers Out Front provided us with their membership numbers for each city in which they organize via Google Sheets. The
-            data included weekly values from the conception of each team on sizes of the various steps of the Ladder of Engagement, 
+            data included weekly values from the conception of each team on sizes of the various steps of the Ladder of Engagement,
             umbers of members who pay dues, and more, all separated by city. There were also sheets for statewide data and national data.
         </em></p>
 
         <p>
-            The attributes were both categorical – each step of the Ladder of Engagemnt (Supporting, Taking Action, and Leading), plus the 
+            The attributes were both categorical – each step of the Ladder of Engagemnt (Supporting, Taking Action, and Leading), plus the
             Dues Paying Memebrs subset, can be considered a category – and numerical – sizes of each category were represented as number of people.
-            To prepare for visualization, the data was downloaded into Excel and condensed to fit on one sheet. This was done so by creating a new 
+            To prepare for visualization, the data was downloaded into Excel and condensed to fit on one sheet. This was done so by creating a new
             table with the columns "State", "City", "Latitude", "Longitude", "Total", "Leading", "Taking Action", "Supporting", and "Dues Paying Members".
-            Each row held one city's data and accessed those numbers by reference to that city's corresponding sheet. Next, a similar sheet was made 
+            Each row held one city's data and accessed those numbers by reference to that city's corresponding sheet. Next, a similar sheet was made
             for the condensed state data with the columns "State", "Total", "Leading", "Taking Action", "Supporting", and "Dues Paying Members", also
             accessed by reference to the state's corresponding sheet – we chose to do this instead of summing each city per state because some people
-            in a state are not represented by a team within a city and fell into an "Other" category not represented in the city sheet. Finally, a 
+            in a state are not represented by a team within a city and fell into an "Other" category not represented in the city sheet. Finally, a
             sheet was made for the National data to create the baseline visualizations with the rows "Name", "Total", "Leading", "Taking Action", and "Supporting",
             with the Name set to National and the numbers accessed by reference. Each sheet was exported into a separate CSV to then be processed in D3
             to create visualizations.

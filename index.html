@@ -116,37 +116,42 @@
 
         <h1>Task Analysis</h1>
 
-        <p><em>Summary of task table.</em></p>
+        <p>Since the project is about allowing Mothers Out Front employees to retreive membership movements, our main task is to create a map and a chart that can be easy to
+          use and filter for the information that the users requested. The map aims to visualize the distribution of the MOF members in the U.S. and highlight the state by their
+          membership numbers in color gradient. By doing this, users could accomplish explore, summarize, browse the data in a high level through color channel. The bar chart will
+          display the membership of different involvements level in person-shaped bars. In this case, users could compare the length of each bar and pick out the major involvements
+          level. Both the map and the person-chart display the same information, but in different breakdowns and servers different purposes. In addition, brushing and linking will
+          be enabled between the map and person-chart for better filtering experiences. Hover tooltip on the person-chart will provide the membership numbers in texts.
+        </p>
 
-        <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em></p>
 
         <h1>Design Process</h1>
 
-        <p><em>Sketches and design choices to justify final visualization.</em></p>
-
-        <p>
-            <em>
-                Expectation: Evidence of iterative improvement.
-                Logical discussion of design choices grounded in theory from course.
-                Discusses feedback from usability testing.
-            </em>
-        </p>
+        <p>In the usability test, we received feedbacks from the test users saying that the it is not necessary to make the map highlights the state polygon after a click event, because it
+            is interrupting the original color gradient and cause misinterpretations. To improve this, we disable the color highlight from the mouse click event. Another thing that we altered
+            is adding a color legend to the map, so that the users can understand the meaning of the color without additional explanation.
+           </p>
 
 
         <h1>Conclusion</h1>
 
-        <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
-
-        <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
+        <p><em>In summary, we successfully implememted the visualizations of membership movements for Mothers Out Front, and we created the design using d3 and css.
+              With the visualizations we created, users from the organization can retreive membership information in geospatial and numerical format.
+        For future directions, we would like to connect with the client and continue to improve the visualizations. In addition, we expected to develop a template of <thead>
+          visualization so that it can be re-used to take in new updated dataset and service the client.
+        </thead> </em></p>
 
 
         <h1>Acknowledgments</h1>
 
-        <p><em>List here where any code, packages/libraries, text, images, designs, etc. that you leverage come from.</em></p>
+        <p><em>List here where any code, packages/libraries, text, images, designs, etc. that the project leveraged.</em></p>
 
         <ul>
-            <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
-            <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann.</li>
+            <li><a href="https://www.d3-graph-gallery.com/choropleth.html">Examples of Choropleth maps</a> from d3 graph gallery.</li>
+            <li><a href="https://bl.ocks.org/mbostock/2206590">Click-to-zoom via transform</a> by Mike Bostock.</li>
+            <li><a href="https://bl.ocks.org/martgnz/56664c7ea8efef56f93ca948ef855d06">Color legend on Choropleth map</a> by Martin Gonzalez.</li>
+
+
         </ul>
 
     </div>

@@ -78,10 +78,14 @@
 
         <h1>Demo Video</h1>
 
-        <p><em>Example transitions and linking of the visualizations.</em></p>
+        <p><em>Examples of transitions and linking of the visualizations.</em></p>
 
         <video controls width="100%">
-            <source src="/files/demo_video.mp4" type="video/mp4">
+            <source src="https://drive.google.com/file/d/1WL_WtbhQCGSjBPwtUi1gPN3KZGfscwFw/view?usp=sharing" type="video/mp4">
+            <p>
+                Your browser doesn't support HTML5 video. Here is
+                a <a href="https://drive.google.com/file/d/1WL_WtbhQCGSjBPwtUi1gPN3KZGfscwFw/view?usp=sharing">link to the video</a> instead.
+            </p>
         </video>
 
         <h1>Visualization Explanation</h1>
@@ -115,21 +119,36 @@
         </p>
 
         <h1>Task Analysis</h1>
+        <p> The table below shows the main tasks derived for our visualization.</p>
+        <img src="files/task_table.png" style="width:600px;"></img>
 
-        <p>Since the project is about allowing Mothers Out Front employees to retreive membership movements, our main task is to create a map and a chart that can be easy to
-          use and filter for the information that the users requested. The map aims to visualize the distribution of the MOF members in the U.S. and highlight the state by their
-          membership numbers in color gradient. By doing this, users could accomplish explore, summarize, browse the data in a high level through color channel. The bar chart will
-          display the membership of different involvements level in person-shaped bars. In this case, users could compare the length of each bar and pick out the major involvements
+        <p>Since the project is about allowing Mothers Out Front members to retreive membership movements, our main task is to create a map and a chart that can be easy to
+          use and filter for the information that the users requested. The map aims to visualize the distribution of the MOF members in the U.S. and enphasize state differences 
+          using a color gradient. By doing this, users could accomplish explore, summarize, browse the data in a high level through color channel. The bar chart will
+          display the membership of different involvement levels in person-shaped bars. In this case, users could compare the length of each bar and pick out the major involvements
           level. Both the map and the person-chart display the same information, but in different breakdowns and servers different purposes. In addition, brushing and linking will
           be enabled between the map and person-chart for better filtering experiences. Hover tooltip on the person-chart will provide the membership numbers in texts.
         </p>
 
 
         <h1>Design Process</h1>
+        <p>Some initial sketches to fulfill the above tasks are as follows:</p>
+        <img src="files/sketch1.png" style="width: 600px;"></img>
+        <img src="files/sketch2.png" style="width: 600px;"></img>
+        <img src="files/sketch3.png" style="width: 600px;"></img>
+        <p>
+            As you can see, the first and third sketches guided much of our plan. Our final sketch is below.
+        </p>
+        <img src="files/final_sketch.png" style="width: 600px;"></img>
+        <p>We soon realized that three graphs would be overwhelming and, though they're both visually interesting, the bar chart with person icons
+            and the bubble chart were representing the same data. We decided to cut the bubble chart in favor of the bar chart in hopes that its concept
+            with the person icons as well as the clear hierarchy of the levels of engagement would make it a better fit for the tasks.
+        </p>
 
         <p>In the usability test, we received feedbacks from the test users saying that the it is not necessary to make the map highlights the state polygon after a click event, because it
             is interrupting the original color gradient and cause misinterpretations. To improve this, we disable the color highlight from the mouse click event. Another thing that we altered
-            is adding a color legend to the map, so that the users can understand the meaning of the color without additional explanation.
+            is adding a color legend to the map, so that the users can understand the meaning of the color without additional explanation. Our users also gave great feedback on the styling of
+            the bar chart including: reducing whitespace and adding a tooltip to increase legibility.
            </p>
 
 

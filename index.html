@@ -97,6 +97,12 @@
             hovers their mouse over the bars of the bar chart, they can see the exact number represented by that bar. When a user clicks on a state, the map zooms in so
             that the state is centered and the bar chart filters to only show that state's data. When a user clicks on the selected state a second time, the map
             zooms back out to show the entire United States, and the nationwide data is displayed once again on the bar chart.
+
+            When a user selects a state on the map, the statewide data is consequently displayed on the bar chart. When selecting through different states, the x scale on
+            the bar chart may change. We decided to dynamically change the scale due to the vast different in domains for the different states. For example, for some states
+            the domain is 3000, while for others it is only around 100. Another important design decision we made was to order the charts with the bar chart first and
+            the map second. Our most important objective in creating this visualization was to emphasize the disparity between leading and supporting members, the most and 
+            least involved members respectively. Thus, we decided to highlight the ladder of engagement breakdown by ordering the bar chart first.
         </em></p>
 
         <h1>Data Analysis</h1>

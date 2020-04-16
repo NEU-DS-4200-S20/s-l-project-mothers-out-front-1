@@ -14,9 +14,10 @@ function createNational() {
         .attr("x", (pWidth / 2))             
         .attr("y", 0 - (pMargin.top / 2))
         .attr("text-anchor", "middle")  
-        .style("font-size", "16px") 
+        .style("font-size", "18px") 
         .style("text-decoration", "underline")  
         .text("Ladder of Engagement at National Level");
+
   // append the svg object to the body of the page
 svg = d3.select("#person-holder").append("svg")
 .attr("id", "svg-person")
@@ -41,9 +42,19 @@ var div = d3.select("#person-holder").append("div")
     svg.append("g")
       .attr("transform", "translate(0," + pHeight + ")")
       .call(d3.axisBottom(x))
+              .style("font-size", "14px") 
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
+
+    // text label for x-axis
+      svg.append("text")             
+      .attr("transform",
+            "translate(" + (pWidth/2) + " ," + 
+                           (pHeight + pMargin.top + 50) + ")")
+      .style("font-size", "16px") 
+      .style("text-anchor", "middle")
+      .text("Number of Members");
 
     // y-axis
     var y = d3.scaleBand()
@@ -51,6 +62,7 @@ var div = d3.select("#person-holder").append("div")
       .domain(data.map(function (d) { return d.Name; }))
       .padding(.1);
     svg.append("g")
+      .style("font-size", "14px") 
       .call(d3.axisLeft(y))
 
     svg

@@ -94,12 +94,22 @@ let stateVar = null;
       x = centroid[0];
       y = centroid[1]-15;
       k = 2.5;
-      centered = d;
+      centered = d
+	d3.select(this)
+      .transition()
+      .duration(200)
+      .style("stroke", "black")
+      .style('stroke-width', 1.8);
     } else {
       x = width / 2;
       y = height / 2;
       k = 1;
-      centered = null;
+      centered = null
+	d3.select(this)
+      .transition()
+      .duration(200)
+      .style("stroke", "#AAB0B0")
+      .style('stroke-width', 1.5);
     }
 
     //communicate w/ other graph

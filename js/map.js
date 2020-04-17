@@ -3,6 +3,7 @@ var height = 800,
     width = 1200,
     centered;
 
+// Insert blank map canvas
 var svg = d3
 .select("#map-holder")
 .append("svg")
@@ -15,6 +16,7 @@ var projection = d3
 .translate([width / 2, height / 2])
 .scale(width);
 
+// Add data
 var path = d3.geoPath().projection(projection);
 
 d3.json("files/us.json", function(us) {
@@ -30,6 +32,7 @@ d3.json("files/us.json", function(us) {
 var mapGroup = svg.append("g")
                   .attr("class", "mapGroup");
 
+// Create map drawing function
 function drawMap(us, cities, states, stateNames) {
 
   // Setting up Choropleth function
@@ -38,7 +41,7 @@ function drawMap(us, cities, states, stateNames) {
 
     let statesTargetNames = states.map(function (s) { return s.name });
     let isTarget = statesTargetNames.includes(stateName)
-
+    
       if (isTarget) {
         return result[stateName]['total'];
       } else {
@@ -53,10 +56,12 @@ function drawMap(us, cities, states, stateNames) {
     console.log(result)
 
     var totalValue = states.map(function (s) { return parseInt(s.total) });
-
+    
+//     Define choropleth color gradient
     var paletteScale = d3.scaleLinear()
                 .domain([d3.min(totalValue), d3.max(totalValue)])
                 .range(["#FFD3AF","#E24A04"]); // orange color
+	
   // end of Choropleth section.
 
   var map_div = d3.select("#map-holder").append("map-div")
@@ -108,21 +113,25 @@ function drawMap(us, cities, states, stateNames) {
             .duration(1000)
             .style("opacity", 0);
     }
-// end of mouse event
-
 
 let stateVar = null;
 // Zoom-in function
   function clicked(d) {
     var x, y, k;
 
-    if (d && centered !== d) {
+  if (d && centered !== d) {
       var centroid = path.centroid(d);
       x = centroid[0];
       y = centroid[1]-15;
       k = 2.5;
       centered = d
-	d3.select(this)
+// hightlighting function
+      d3.selectAll('path')
+      .transition()
+      .duration(200)
+      .style("stroke", "#AAB0B0")
+      .style('stroke-width', 1.5)
+      d3.select(this)
       .transition()
       .duration(200)
       .style("stroke", "black")
@@ -132,13 +141,14 @@ let stateVar = null;
       y = height / 2;
       k = 1;
       centered = null
-	d3.select(this)
+      d3.selectAll('path')
       .transition()
       .duration(200)
       .style("stroke", "#AAB0B0")
       .style('stroke-width', 1.5);
     }
-
+// end of mouse event
+	  
     //communicate w/ other graph
     d3.tsv('data/us-state-names.tsv', function(stateNames) {
         state = filterState(stateNames);
@@ -156,6 +166,7 @@ let stateVar = null;
         return stateNames.filter(function (n) {return n.id == d.id})[0].code;
 	}
 
+// Zoom to selected state center
     mapGroup.selectAll("path")
         .classed("active", centered && function(d) { return d === centered; });
 
@@ -167,6 +178,7 @@ let stateVar = null;
   }
   // End of Zoom-in function
 
+//  Draw map and add color and mouse events
     mapGroup.append("g")
     .attr("id", "states")
     .selectAll("path")
@@ -202,13 +214,15 @@ let stateVar = null;
 
     // Map Legend
     var w = 500, h = 80;
-
+	
+// Create legend canvas
     var key = svg.append("g")
       .attr("class", "legend")
       .append("svg")
       .attr("width", 1500)
       .attr("height", h);
-
+	
+// Set up legend settings
     var legend = key.append("defs")
       .append("linearGradient")
       .attr("id", "gradient")
@@ -218,6 +232,7 @@ let stateVar = null;
       .attr("y2", "0%")
       .attr("spreadMethod", "pad");
 
+// 	Set color blocks in the lengend
     legend.selectAll('stop')
           .data([
             {offset: "0%", color: "#E2DEDE"},
@@ -237,6 +252,7 @@ let stateVar = null;
       .style("fill", "url(#gradient)")
       .attr("transform", "translate(320,40)");
 
+// 	Add legend title
     key.append('g')
        .attr('class','caption')
        .attr("transform", "translate(320,35)")
@@ -245,7 +261,8 @@ let stateVar = null;
         .attr("text-anchor", "start")
         .attr("font-weight", "bold")
         .text("Total membership in each state ");
-
+	
+// Add y-axis to legend
     var y = d3.scaleLinear()
       .range([w, 0])
       .domain([d3.max(totalValue),0]);

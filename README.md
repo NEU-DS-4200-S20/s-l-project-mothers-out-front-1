@@ -1,5 +1,5 @@
 # Viewing People Power
-# Rachel Waddell, Nanxi Gu, Maris McGuinness
+Rachel Waddell, Nanxi Gu, Maris McGuinness
 
 This project aims to support our client, [Mothers Out Front](https://www.mothersoutfront.org/), to visualize the membership at each level of the Ladder of Engagement.
 

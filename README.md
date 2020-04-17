@@ -40,21 +40,22 @@ https://neu-ds-4200-s20.github.io/s-l-project-mothers-out-front-1/
 ## Folders
 Each folder has an explanatory `README.md` file
 
-* `data` is where you will put your data files.
+* `data` stores data files.
 
-* `favicons` contains the favicons for the course projects. You shouldn't change anything here.
+* `favicons` contains the favicons for the course projects.
 
-* `files` will contain your slides (PDF) and video (MP4).
+* `files` contains our sketch and task images (PNG) and video (MP4).
 
-* `images` will contain your screenshots, diagrams, and photos.
+* `images` contains screenshots, diagrams, and photos.
 
-* `js` will contain all JavaScript files you write.
-
-  * `visualization.js` is the main code that builds all your visualizations. Each visualization should be built following the [Reusable Chart model](https://bost.ocks.org/mike/chart/)
+* `js` will contain all JavaScript files written.
+  * `map.js` contains all functions to create the map visualization.
+  * `person.js` contains all functions to create the person bar chart visualization.
+  * `visualization.js` simply creates the national graph from the person file, it is done in this file to preserve proper ordering. Each visualization should be built following the [Reusable Chart model](https://bost.ocks.org/mike/chart/)
   
-* `lib` will contain any JavaScript library you use. It currently includes D3.
+* `lib` contains JavaScript libraries you used. 
 
 ## Demo Video of the Project
 
-You could find a brief introduction and some quick demonstations through a [video](https://drive.google.com/open?id=1cE6q7mL7y-6CHk56zQbekx6zwumxNniB)
+You can find a brief introduction and some quick demonstations through this [video](https://drive.google.com/open?id=1cE6q7mL7y-6CHk56zQbekx6zwumxNniB)
     

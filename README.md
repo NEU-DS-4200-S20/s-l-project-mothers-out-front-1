@@ -1,10 +1,11 @@
-# S-L Project Template
+# Viewing People Power
+# Rachel Waddell, Nanxi Gu, Maris McGuinness
 
-This template will help you get started with your project. Please look through all these materials so you know how to organize your project.
+This project aims to support our client, [Mothers Out Front](https://www.mothersoutfront.org/), to visualize the membership at each level of the Ladder of Engagement.
 
 ## The GitHub Pages Website
 
-Make sure you publish your project to github pages, and put the URL here: 
+The github pages of the project can be found here: 
 https://neu-ds-4200-s20.github.io/s-l-project-mothers-out-front-1/
 
 ## Setup
@@ -53,25 +54,7 @@ Each folder has an explanatory `README.md` file
   
 * `lib` will contain any JavaScript library you use. It currently includes D3.
 
-## Workflow
+## Demo Video of the Project
 
-As you work with your team, you may have issues merging your changes. We recommend you pick one member of the team to be the project manager and deal with merging any pull requests.
-
-Instead of all working directly out of the main `master` branch, you can try adopting a Git branching model for development. See, e.g., [this article by Vincent Driessen](https://nvie.com/posts/a-successful-git-branching-model/) and the included image:
-
-![Image of Git branching model by VIncent Driessen](http://www.ccs.neu.edu/home/cody/courses/shared/git-model.png)
-
-## Grading
-
-Make sure to check these aspects of your work, which are important for every submission:
-
-* Coding was done properly:
-    * Your code was regularly committed and not edited via the GitHub user interface online.
-    * You have clear, commented, and validated code.
-    * Your web page loads properly and looks as expected in the latest Firefox and Chrome browsers.
-    * Any code from other sources (modified or copied straight) is acknowledged.
-
-* Your visualization works as required:
-    * Styles are consistent across views.
-    * None of the visualizations change size or move on the screen as you interact with them.
+You could find a brief introduction and some quick demonstations through a [video](https://drive.google.com/open?id=1cE6q7mL7y-6CHk56zQbekx6zwumxNniB)
     

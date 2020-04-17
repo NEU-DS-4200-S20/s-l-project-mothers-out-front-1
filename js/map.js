@@ -11,14 +11,16 @@ var svg = d3
 .attr("height", height)
 .attr("transform", "translate(90,0)");
 
+// projects proper polygons for a flat map of the US
 var projection = d3
 .geoAlbersUsa()
 .translate([width / 2, height / 2])
 .scale(width);
 
-// Add data
+// Add state borders
 var path = d3.geoPath().projection(projection);
 
+// parse data and input it into the drawMap function
 d3.json("files/us.json", function(us) {
   d3.csv("data/by-city.csv", function(cities) {
     d3.csv('data/by-state.csv',function(states){
@@ -29,46 +31,55 @@ d3.json("files/us.json", function(us) {
   });
 });
 
+// keeps a pointer to the mapGroup tag for future use
 var mapGroup = svg.append("g")
                   .attr("class", "mapGroup");
 
 // Create map drawing function
 function drawMap(us, cities, states, stateNames) {
 
-  // Setting up Choropleth function
+  // Setting up color scale function
     let fillFunction = function(d){
+    // finds each state in the list of all states
     let stateName = stateNames.filter(function (n) { return n.id == d.id })[0].code
 
+    // finds a list of all the states for which we have data
     let statesTargetNames = states.map(function (s) { return s.name });
+    // boolean that indicates whether the current state is in the statesTargetNames list
     let isTarget = statesTargetNames.includes(stateName)
     
+      // if isTarget is true returns that state's total people value
       if (isTarget) {
         return result[stateName]['total'];
-      } else {
+      } 
+      // if state data not found, returns 0
+      else {
         return 0;
       };
     }
 
+    // creats a dictionary of states and their totals for map coloring
     var result = {};
     for (var i = 0; i < states.length; i++) {
       result[states[i].name] = {total: states[i].total};
     }
-    console.log(result)
 
     var totalValue = states.map(function (s) { return parseInt(s.total) });
     
-//     Define choropleth color gradient
+//     Define  color gradient
     var paletteScale = d3.scaleLinear()
                 .domain([d3.min(totalValue), d3.max(totalValue)])
                 .range(["#FFD3AF","#E24A04"]); // orange color
 	
-  // end of Choropleth section.
+  // end of color map section.
 
+  // appends the tooltip to the map holder
   var map_div = d3.select("#map-holder").append("map-div")
   .attr("class", "tooltip")
   .style("opacity", 0);
 
-// Mouseover and Mouseout function
+// Mouseover: when the mouse is over a state, it darkens that state and activates
+// the tooltip with the state name and total number of people in that state
   let mouseOver = function(d) {
       d3.selectAll("path")
         .transition()
@@ -100,7 +111,8 @@ function drawMap(us, cities, states, stateNames) {
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
     }
-
+   // MouseLeave: when the mouse leaves the map, it stops all state highlighting
+   // and the tooltip fades out
     let mouseLeave = function(d) {
       d3.selectAll("path")
         .transition()
@@ -125,7 +137,7 @@ let stateVar = null;
       y = centroid[1]-15;
       k = 2.5;
       centered = d
-// hightlighting function
+// Darkens the border of the state upon selection
       d3.selectAll('path')
       .transition()
       .duration(200)
@@ -149,7 +161,8 @@ let stateVar = null;
     }
 // end of mouse event
 	  
-    //communicate w/ other graph
+    // Decide whether the person graph should be zoomed in or out and calls the appropriate
+    //function
     d3.tsv('data/us-state-names.tsv', function(stateNames) {
         state = filterState(stateNames);
         if (stateVar == state) {

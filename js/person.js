@@ -148,7 +148,11 @@ var div = d3.select("#person-holder").append("div")
       }
     }
     if (!inData) {
-      var stateData = {name : stateName, total : 0, Leading : 0, Taking_Action : 0, Supporting : 0, Dues_Paying_Members : 0};
+      var stateData = {name : stateName, 
+                       total : 0, Leading : 0, 
+                       Taking_Action : 0, 
+                       Supporting : 0, 
+                       Dues_Paying_Members : 0};
       var xMax = 1000;
     }
     else {

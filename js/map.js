@@ -46,10 +46,10 @@ function drawMap(us, cities, states, stateNames) {
       };
     }
 
-    var result = {}; 
-    for (var i = 0; i < states.length; i++) { 
-      result[states[i].name] = {total: states[i].total}; 
-    }  
+    var result = {};
+    for (var i = 0; i < states.length; i++) {
+      result[states[i].name] = {total: states[i].total};
+    }
     console.log(result)
 
     var totalValue = states.map(function (s) { return parseInt(s.total) });
@@ -59,6 +59,9 @@ function drawMap(us, cities, states, stateNames) {
                 .range(["#FFD3AF","#E24A04"]); // orange color
   // end of Choropleth section.
 
+  var map_div = d3.select("#map-holder").append("map-div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
 
 // Mouseover and Mouseout function
   let mouseOver = function(d) {
@@ -70,6 +73,27 @@ function drawMap(us, cities, states, stateNames) {
         .transition()
         .duration(200)
         .style("opacity", 1)
+        var hoverState = stateNames.filter(function (n) { return n.id == d.id })[0];
+        var hoverCode = hoverState.code;
+        var inData = false;
+        var index = 0;
+        for (var i = 0; i < states.length; i += 1) {
+          if (hoverCode == states[i].name) {
+            inData = true;
+            index = i;
+            break;
+          }
+        }
+        var hoverNum = 0;
+        if (inData) {
+          hoverNum = states[index].total;
+        }
+       map_div.transition()
+          .duration(200)
+          .style("opacity", 1);
+       map_div.html(hoverState.name + "</br>" + hoverNum)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
     }
 
     let mouseLeave = function(d) {
@@ -80,6 +104,9 @@ function drawMap(us, cities, states, stateNames) {
       d3.select(this)
         .transition()
         .duration(100)
+        map_div.transition()
+            .duration(1000)
+            .style("opacity", 0);
     }
 // end of mouse event
 
@@ -157,6 +184,10 @@ let stateVar = null;
       })
     .on('mouseover',mouseOver)
     .on('mouseleave', mouseLeave)
+    .on('mousemove', function(d) {
+      map_div.style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+    })
 
 
     mapGroup.append("path")

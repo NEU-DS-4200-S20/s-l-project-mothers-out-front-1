@@ -39,7 +39,7 @@ h1, h2, h3 {
 	pointer-events: none;
 }
 
-div.tooltip {
+.tooltip {
     position: absolute;
     text-align: center;
     width: 80px;
